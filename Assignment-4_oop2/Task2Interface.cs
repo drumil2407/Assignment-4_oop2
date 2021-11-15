@@ -1,9 +1,9 @@
 ﻿using System;
 
-// Make sure to uncomment the ToString methods when you are ready!
 
 namespace A4.Task2Interface
 {
+	
 	interface ICarryPassengers
 	{
 		public string CarryPassengers();
@@ -17,29 +17,29 @@ namespace A4.Task2Interface
 		{
 			Displacement = displacement;
 		}
-
-		public override string ToString() => $"A ship that displaces {Displacement} tons of water"; 
+		public override string ToString()
+		{
+			return $"A ship that displaces {Math.Round(Displacement, 2)} tons of water";
+		}
 
 	}
-
+	//inherut ship as well as interface IcarryPassengers
 	class CruiseShip : Ship,ICarryPassengers
 	{
-		
+
 		private int NumPassengers;
 
-        public CruiseShip(double displacement, int numPassengers) : base(displacement)
+		public CruiseShip(double displacement, int numPassengers) : base(displacement)
         {
-			NumPassengers = numPassengers;
+			this.NumPassengers = numPassengers;
 		}
 		public string CarryPassengers()
 		{
 			return $"{base.ToString()} and is carrying {NumPassengers} passengers on a Caribbean Cruise";
 		}
-		public override string ToString()
-		{
-			return $"A ship that displaces {Math.Round(Displacement, 2)} tons of water";
-		}
-    }
+		public override string ToString() => CarryPassengers();
+
+	}
 
 	class BigRig
 	{
@@ -49,10 +49,10 @@ namespace A4.Task2Interface
 		{
 			NumTires = numTires;
 		}
-	
 		public override string ToString() => $"A vehicle with {NumTires} tires"; 
 	}
 
+	//inherit BigRig as well as IcarryPassengers
 	class TourBus :BigRig, ICarryPassengers
 	{
 	
